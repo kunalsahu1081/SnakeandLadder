@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import '../Styles.css'
 
-export default function Starters({startApp,updatePlayer1Name,updatePlayer2Name}) {
+export default function Starters({startApp,updatePlayer1Name}) {
 
    const [Name,setName] = useState('Player 1')
 
@@ -28,10 +28,6 @@ export default function Starters({startApp,updatePlayer1Name,updatePlayer2Name})
 
           <label htmlFor='Player Name' className='comp'>Enter Player 1 Name</label>
           <input type='text' className='comp' placeholder='Player 1' id='Player 1' onChange={updatePlayer1Name} ></input>
-
-          <label htmlFor='Player Name' className='comp'>Enter Player  2 Name</label>
-          <input type='text' className='comp' placeholder='Player 2' id='Player 1' onChange={updatePlayer2Name} ></input>
-
 
         <button className='btn' onClick={startApp} >Start Game</button>
     </div>

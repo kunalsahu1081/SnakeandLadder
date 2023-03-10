@@ -7,7 +7,6 @@ const App = () => {
   const [Starting, setStarting] = useState(true);
   const [startLayout, setStartLayout] = useState(false)
   const [player1Name, setPlayer1Name] = useState('player 1')
-  const [player2Name, setPlayer2Name] = useState('player 2')
 
   function startApp(name){
     setStarting(false);
@@ -23,16 +22,10 @@ const App = () => {
     setPlayer1Name(e.target.value);
   }
 
-  function updatePlayer2Name(e){
-    setPlayer2Name(e.target.value);
-  }
-
-  
-
   return (
     <div className="App">
-      {Starting && (<Starters startApp={startApp} updatePlayer1Name={updatePlayer1Name} updatePlayer2Name={updatePlayer2Name} />)}
-      {startLayout && (<Layout player1Name={player1Name} player2Name={player2Name}  reset={reset}/>)} 
+      {Starting && (<Starters startApp={startApp} updatePlayer1Name={updatePlayer1Name} />)}
+      {startLayout && (<Layout player1Name={player1Name} reset={reset}/>)} 
     </div>
   );
 };

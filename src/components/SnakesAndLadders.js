@@ -19,7 +19,7 @@ const ladders = [
 
 const present = [];
 
-for(let i=0;i<100;i++) present[i] = -1;
+for(let i=0;i<=100;i++) present[i] = i;
 
 for(let i=0;i<6;i++) present[snakes[i][0]] = snakes[i][1];
 for(let i=0;i<6;i++) present[ladders[i][0]] = ladders[i][1];
