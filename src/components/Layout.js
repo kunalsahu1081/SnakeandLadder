@@ -12,43 +12,24 @@ export default function Layout(props) {
   const [turn,setTurn] = useState(0);
   const [player1Position,setPlayer1Position] = useState({
     currPos: 1,
-    nsteps: -1,
+    nsteps: -2,
     buttonVisibility : 1
   });
   const [player2Position,setPlayer2Position] = useState({
     currPos: 1,
-    nsteps: -1,
+    nsteps: -2,
     buttonVisibility : 1
   });
 
  // .............................................................  
   
   const {snakes,ladders,present} = SnakesAndLadders;
-  const players = [props.player1Name,props.player2Name];
+  const players = [props.player1Name,'Browser'];
 
 
   // ................ check for snakes and ladders  .......................
 
-  function checkSnakesAndLadders(){
-
-    if(present[player1Position.currPos]!=-1){
-      setPlayer1Position({
-        ...player1Position,
-        currPos : present[player1Position.currPos],
-        nsteps : player1Position.nsteps - 1
-      })
-    }
-    if(present[player2Position.currPos]!=-1){
-      setPlayer2Position({
-        ...player2Position,
-        currPos : present[player2Position.currPos],
-        nsteps :player2Position.nsteps - 1
-      })
-    }
-
-    setTurn(turn => 1-turn);
-    
-  }
+  
 
 //  .............. useeffect for player 1 ......................
 
@@ -69,12 +50,13 @@ export default function Layout(props) {
 
       setPlayer1Position({
         ...player1Position,
+        currPos : present[player1Position.currPos],
         buttonVisibility : 1,
         nsteps : player1Position.nsteps-1
       })
 
     }
-    else if(player1Position.nsteps == -1) checkSnakesAndLadders();
+    else if(player1Position.nsteps == -1) RollDice2();
   },[player1Position])
 
 
@@ -97,18 +79,20 @@ export default function Layout(props) {
 
       setPlayer2Position({
         ...player2Position,
+        currPos : present[player2Position.currPos],
         buttonVisibility : 1,
         nsteps : player2Position.nsteps-1
       })
       
     }
-    else if(player2Position.nsteps == -1) checkSnakesAndLadders();
+    else if(player2Position.nsteps == -1) setTurn(0);
   },[player2Position])
 
 
 //   ................ dice rolling function .......................
 
   function RollDice2(){
+    setTurn(1);
     const rand = Math.floor(Math.random() * (6)) + 1;
       setVal(rand);
       if(rand+player2Position.currPos>=100) {
@@ -147,7 +131,7 @@ export default function Layout(props) {
             {!turn ? (player1Position.buttonVisibility ? (<button className='btn' onClick={RollDice1}>Roll Dice</button>)
             : (<button className='btn'>.....</button>)
              )
-            : (player2Position.buttonVisibility ? (<button className='btn' onClick={RollDice2}>Roll Dice</button>)
+            : (player2Position.buttonVisibility ? (<button className='btn' >....</button>)
             : <button className='btn'>.....</button>
              )
             }
